@@ -132,6 +132,7 @@ Claude Code に「変更をコミットして」「GitHub に push して」と�
 | `scripts/fpt_helpers.py` | 実験条件から λ、NA、kc、焦点深度などを計算する補助のスクリプト |
 | `tests/` | `selftest.py`（簡単な確認）、`check_32a.sh`（32a での確認）、`regress_unified.py`（統合のときの回帰テストの記録） |
 | `paths_local.example.sh` | 生データの場所を書くひな形 |
+| `LICENSE` | MIT ライセンス |
 
 ## 注意
 
@@ -140,3 +141,7 @@ Claude Code に「変更をコミットして」「GitHub に push して」と�
 - p（試料–対物距離 0.75 m）と CZP の焦点距離（2.4 m）は実測値ではありません。
 - 解析に使った生データとこれまでの成果物は公開していないため、このリポジトリには入っていません。
   自分のデータで使うときは、`paths_local.sh` にそのフォルダを書き、`/fpt-recon-workflow` の手順で条件を決めます。
+
+## ライセンス
+
+MIT ライセンスです。著作権者と条文は `LICENSE` にあります。
