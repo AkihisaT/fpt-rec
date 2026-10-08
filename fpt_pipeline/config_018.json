@@ -1,0 +1,30 @@
+{
+ "_comment": "018 (Siemens star, SPring-8, 30 keV, FZP dr=100 nm, phi 310 um). ITEX .img 1024x1024, one exposure per position (1 s). Dark offset 100 counts = camera Prop_ConversionFactorOffset. p and CZP focal length are not measured values.",
+ "data_dir": "${FPT018_RAW}",
+ "sample_subdir": "01_sample",
+ "direct_subdir": "03_direct",
+ "positions_csv": "3層高エネczp.csv",
+ "n_repeat": 1,
+ "repeat_order": "interleaved",
+ "output_dir": "fpt_output_018",
+ "energy_keV": 30.0,
+ "pixel_um": 0.0319,
+ "fzp_outer_zone_um": 0.1,
+ "sample_objective_distance_m": 0.75,
+ "czp_focal_m": 2.4,
+ "stage_step_um": 0.5,
+ "dark_offset": 100.0,
+ "nonlinear": {
+  "M": null,
+  "No": null,
+  "n_pupil": 20,
+  "n_joint": 150,
+  "threads": 8
+ },
+ "fov_factors": [
+  0.0,
+  1.0
+ ],
+ "twin": -1,
+ "_comment_twin": "twin forced to -1: the linear-solution criterion was weak (corr(a,phi) = -0.11 -> +1), while (i) the BLIS-FPM phase is anti-correlated with the 003 physical phase of the same Siemens star (r = -0.85), (ii) the nonlinear solutions give solver-frame corr(a,phi) = +0.09 / +0.20 (material needs physical corr < 0), (iii) the FOV scan prefers kappa_solver = -kappa_nom, i.e. physical +1/(lambda p) as in 003, and (iv) the defocus sign then matches 003."
+}

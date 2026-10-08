@@ -1,0 +1,35 @@
+{
+ "_comment": "32a (Siemens star, 30 keV, parallel beam + objective-FZP scan). Positions in um: FZP X x 2.5 um, FZP Y x 0.2 um (see report: 0.2 um makes the scan rings circular). Lens shift d -> pupil shift d/(lambda p): 'czp_focal_m' is used as p (=0.75 m, not measured) with stage_step_um = 1 (positions in um). dark_offset 100 (no dark frames). Calibration test with dr = 200 nm.",
+ "data_dir": "../d32a/data_bf01",
+ "sample_subdir": "sample",
+ "direct_subdir": "direct",
+ "positions_csv": "positions_um.csv",
+ "n_repeat": 1,
+ "repeat_order": "interleaved",
+ "output_dir": "fpt_output_32a_cal_dr200",
+ "energy_keV": 30.0,
+ "pixel_um": 0.0319,
+ "fzp_outer_zone_um": 0.2,
+ "sample_objective_distance_m": 0.75,
+ "czp_focal_m": 0.75,
+ "stage_step_um": 1.0,
+ "dark_offset": 100.0,
+ "calib": {
+  "crop_center": [
+   520,
+   500
+  ]
+ },
+ "nonlinear": {
+  "M": null,
+  "No": null,
+  "n_pupil": 20,
+  "n_joint": 150,
+  "threads": 4
+ },
+ "fov_factors": [
+  0.0,
+  1.0
+ ],
+ "twin": null
+}

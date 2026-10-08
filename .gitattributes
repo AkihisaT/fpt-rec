@@ -1,0 +1,6 @@
+# line endings: LF in the repository (also for a later Windows checkout)
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+# measurement tables are kept byte for byte
+*.csv -text

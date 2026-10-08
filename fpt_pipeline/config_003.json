@@ -1,0 +1,19 @@
+{
+  "_comment": "003_FPT_nanoa_60umPinhole_9-16-19CZProtate_2times  (SPring-8, 30 keV, FZP dr=100 nm)",
+  "data_dir": "${FPT003_RAW}",
+  "sample_subdir": "02sample_tif",
+  "direct_subdir": "04direct_tif",
+  "positions_csv": "3層高エネczp.csv",
+  "n_repeat": 2,
+  "repeat_order": "interleaved",
+  "output_dir": "fpt_output_003",
+  "energy_keV": 30.0,
+  "pixel_um": 0.0319,
+  "fzp_outer_zone_um": 0.100,
+  "sample_objective_distance_m": 0.75,
+  "czp_focal_m": 2.4,
+  "stage_step_um": 0.5,
+  "dark_offset": 100.0,
+  "nonlinear": {"M": 672, "No": 1200, "n_pupil": 20, "n_joint": 150, "threads": 8},
+  "fov_factors": [0.0, 1.0]
+}

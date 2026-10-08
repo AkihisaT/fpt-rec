@@ -1,0 +1,16 @@
+# conda env create -f environment_dip.yml ; conda activate dip
+# (torch from PyPI: on macOS it uses Apple Accelerate BLAS and is ~3x faster on CPU than the conda-forge OpenBLAS build)
+name: dip
+channels: [conda-forge]
+dependencies:
+  - python=3.12
+  - numpy=2.5
+  - scipy=1.18
+  - tifffile
+  - matplotlib=3.11
+  # OpenBLAS without OpenMP: the openmp build loads env/lib/libomp.dylib and the PyPI torch loads its own
+  # torch/lib/libomp.dylib, so 'import torch' aborts on macOS with 'OMP: Error #15' (two OpenMP runtimes)
+  - libopenblas=*=*pthreads*
+  - pip
+  - pip:
+      - torch==2.14.0

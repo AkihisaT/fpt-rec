@@ -1,0 +1,77 @@
+{
+ "_comment": "DIP (untrained U-Net) FPM reconstruction of 32a (parallel-beam objective-FZP scan, 30 keV, dr = 250 nm, kc = 2.00 um^-1): bright field rings 0-2 (60 images); crop 1000 px; 300 iterations, selected iteration on held-out images",
+ "fpt_work_dir": "../fpt_pipeline/fpt_output_32a_bf_aff/work",
+ "output_dir": "dip_output_32abfaff_1000",
+ "energy_keV": 30.0,
+ "pixel_um": 0.0319,
+ "fzp_outer_zone_um": 0.25,
+ "sample_objective_distance_m": 0.75,
+ "clip": [
+  0.5,
+  2.0
+ ],
+ "export_band": [
+  0.3,
+  3.5
+ ],
+ "dip": {
+  "crop_px": 1000,
+  "crop_center": null,
+  "max_k_over_kc": 0.97,
+  "val_every": 9,
+  "M": null,
+  "No": null,
+  "unet_px": 992,
+  "pupil_radius": 1.02,
+  "unet_base": 16,
+  "unet_depth": 4,
+  "batchnorm": true,
+  "eval_mode_bn": false,
+  "absorption_scale": 0.05,
+  "phase_scale": 0.5,
+  "zernike_scale": 0.3,
+  "shift_scale_px": 1.0,
+  "intensity_scale": 0.1,
+  "loss": "intensity",
+  "loss_tukey": 0.2,
+  "l2_weight": 0.0001,
+  "lr_unet": 0.001,
+  "lr_mlp": 0.001,
+  "input_noise": 0.0,
+  "n_iter": 300,
+  "eval_every": 10,
+  "seed": 0,
+  "threads": 4,
+  "fov_factors": [
+   0.0,
+   1.0
+  ],
+  "select_by": "val_band",
+  "shift_mode": "image",
+  "_shift_mode_options": "image: per-image lateral image shift (units: camera pixels; e.g. sample/optics drift); illumination: per-image illumination wave-vector correction (units: crop spectrum pixel dk). Both bounded by shift_max via tanh.",
+  "shift_max": 5.0,
+  "pupil_free": false,
+  "lr_pupil_free": 0.001,
+  "pupil_free_l2": 0.0,
+  "tag_suffix": "",
+  "select_tol": 0.01,
+  "_select_comment": "selected iteration = earliest evaluation with validation band misfit <= (1 + select_tol) x minimum",
+  "mask_vignetted": true,
+  "eval_vignetting_mask": true,
+  "_mask_comment": "mask_vignetted: FOV model excludes pixels where the model direct beam leaves the pupil (needed for large crops); off here to keep the 512-crop results as reported",
+  "dark_mode": false,
+  "exclude_images": []
+ },
+ "previous_native": [
+  {
+   "label": "BLIS-FPM planewave (rings 0-2)",
+   "file": "../../d32a/blis_bfaff/c0_ho.npz"
+  },
+  {
+   "label": "BLIS-FPM FOV c1 (rings 0-2)",
+   "file": "../../d32a/blis_bfaff/c1_ho.npz"
+  }
+ ],
+ "_comment_registration": "input = registered stacks: stage-rounding shift (prep_32a_reg.py) + pairwise network (register_32a.py) + model-based refinement (register_to_model.py)",
+ "_comment_posaffine": "input: fpt_output_32a_bf_aff/work = stage-rounding correction + posaffine step (mechanical image drift removed, pupil parallax of the contrast focus kept; defocus/astig from the contrast focus)"
+}

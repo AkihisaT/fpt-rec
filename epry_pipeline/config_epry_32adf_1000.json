@@ -1,0 +1,65 @@
+{
+ "_comment": "EPRY-FPM (Ou, Zheng & Yang 2014; adaptive step Zuo 2016) for 32a, dr = 250 nm; rings 0-2 + 6-7 (dark mode); crop 1000 px",
+ "fpt_work_dir": "../../d32a/work_df_nd",
+ "dip_pipeline_dir": "../dip_pipeline",
+ "dip_results_dir": "../dip_pipeline/dip_output_32adf_1000",
+ "previous_native": [
+  {
+   "label": "BLIS-FPM planewave (rings 0-2 + 6-7, dark mode)",
+   "file": "../../d32a/blis_df/c0_ho.npz"
+  },
+  {
+   "label": "BLIS-FPM FOV c1 (rings 0-2 + 6-7, dark mode)",
+   "file": "../../d32a/blis_df/c1_ho.npz"
+  }
+ ],
+ "output_dir": "epry_output_32adf_1000",
+ "energy_keV": 30.0,
+ "pixel_um": 0.0319,
+ "fzp_outer_zone_um": 0.25,
+ "sample_objective_distance_m": 0.75,
+ "clip": [
+  -0.5,
+  5.0
+ ],
+ "export_band": [
+  0.3,
+  3.5
+ ],
+ "epry": {
+  "crop_px": 1000,
+  "crop_center": null,
+  "max_k_over_kc": 2.0,
+  "val_every": 9,
+  "M": null,
+  "No": null,
+  "pupil_radius": 1.02,
+  "n_sweeps": 100,
+  "alpha": 1.0,
+  "beta": 1.0,
+  "pupil_update": true,
+  "pupil_update_from": 1,
+  "adaptive_step": true,
+  "step_eps": 0.01,
+  "alpha_min": 0.002,
+  "intensity_correction": true,
+  "replace_tukey": 0.2,
+  "loss_tukey": 0.2,
+  "select_by": "val_band",
+  "select_tol": 0.01,
+  "fov_factors": [
+   0.0,
+   1.0
+  ],
+  "threads": 4,
+  "eval_vignetting_mask": true,
+  "init_noise": 0.0,
+  "seed": 0,
+  "mask_vignetted": true,
+  "pupil_gamma": 0.0,
+  "_pupil_gamma_comment": "0 = EPRY normalisation conj(S)/max|S|^2 (Ou et al. 2014); >0 = rPIE-type ((1-g)|S|^2 + g max|S|^2)",
+  "dark_mode": true,
+  "exclude_images": []
+ },
+ "_comment_registration": "input = d32a/work_df_nd: bright part registered like the BF set (rounding + pairwise network + model refinement); dark part (rings 6-7) with the rounding correction only (the pairwise dark-field correction did not change the held-out misfit)"
+}

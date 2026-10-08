@@ -1,0 +1,29 @@
+{
+ "_comment": "036 bright-field subset (Siemens star, 30 keV, FZP dr=200 nm, phi 155 um): ring-1 positions only (9). Input = drift-corrected per-pixel medians of 3 repeats (halves A = repeats 1,3,5 and B = 2,4,6, see d036/prep_036.py), background-subtracted (per-pixel median of dark-field direct frames), so dark_offset = 0. p = FZP focal length and CZP focal length are not measured values.",
+ "data_dir": "../d036/data_bf",
+ "sample_subdir": "sample_tif",
+ "direct_subdir": "direct_tif",
+ "positions_csv": "czp_ring1.csv",
+ "n_repeat": 2,
+ "repeat_order": "interleaved",
+ "output_dir": "fpt_output_036bf",
+ "energy_keV": 30.0,
+ "pixel_um": 0.0319,
+ "fzp_outer_zone_um": 0.2,
+ "sample_objective_distance_m": 0.75,
+ "czp_focal_m": 2.4,
+ "stage_step_um": 0.5,
+ "dark_offset": 0.0,
+ "nonlinear": {
+  "M": null,
+  "No": null,
+  "n_pupil": 20,
+  "n_joint": 150,
+  "threads": 8
+ },
+ "fov_factors": [
+  0.0,
+  1.0
+ ],
+ "twin": null
+}

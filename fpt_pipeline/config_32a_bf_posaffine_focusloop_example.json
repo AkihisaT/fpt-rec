@@ -1,0 +1,47 @@
+{
+ "_comment": "Example for the optional posaffine step (32a, 2026-09-27). data_dir = ../d32a/data_reg_bf (made by d32a/prep_32a_reg.py and d32a/make_subset_32a.py: dark-subtracted, half-pulse-corrected stack); change it to your own data. 32a (Siemens star, 30 keV, parallel beam + objective-FZP scan). Positions in um: FZP X x 2.5 um, FZP Y x 0.2 um (see report: 0.2 um makes the scan rings circular). Lens shift d -> pupil shift d/(lambda p): 'czp_focal_m' is used as p (=0.75 m, not measured) with stage_step_um = 1 (positions in um). Input = d32a/data_reg (dark offset 100 subtracted, stage-rounding shifts corrected), so dark_offset = 0. Bright-field set: rings 0-2 (60 images, |k|/kc 0.49-0.82 as the median per ring, 0.43-0.87 over the images from the calibration). dr = 250 nm. Calibration from the direct-image vignetting (d32a/make_calib_32a.py), not from the WOTF step; twin forced +1. Work folder input = stage-rounding-corrected stack (fpt_output_32a_bf/work). The posaffine step measures the image shifts (pairwise network), corrects the drift linear in the lens position as a mechanical error (the part predicted by the contrast-based pupil is kept), corrects the random part, refines against the model, and sets defocus / astigmatism from the contrast. Run the steps posaffine,linear,nonlinear,export,figures.",
+ "data_dir": "../d32a/data_reg_bf",
+ "sample_subdir": "sample",
+ "direct_subdir": "direct",
+ "positions_csv": "positions_um.csv",
+ "n_repeat": 1,
+ "repeat_order": "interleaved",
+ "output_dir": "fpt_output_32a_bf_aff2",
+ "energy_keV": 30.0,
+ "pixel_um": 0.0319,
+ "fzp_outer_zone_um": 0.25,
+ "sample_objective_distance_m": 0.75,
+ "czp_focal_m": 0.75,
+ "stage_step_um": 1.0,
+ "dark_offset": 0.0,
+ "calib": {
+  "crop_center": [
+   520,
+   500
+  ]
+ },
+ "nonlinear": {
+  "M": null,
+  "No": null,
+  "n_pupil": 20,
+  "n_joint": 150,
+  "threads": 4
+ },
+ "fov_factors": [
+  0.0,
+  1.0
+ ],
+ "twin": 1,
+ "position_affine": {
+  "enabled": true,
+  "fov_factor": 1.0,
+  "n_neighbours": 4,
+  "n_pupil": 20,
+  "n_joint": 150,
+  "model_refine": true,
+  "warn_percent": 0.1,
+  "focus_iter": 3,
+  "focus_tol_um": 100.0
+ },
+ "_comment_focus_loop": "2026-09-28: posaffine with the focus loop (object solved with the pupil fixed at the contrast focus; residual object defocus moved into the pupil, kept parallax recomputed; up to 3 times, tolerance 100 um)"
+}
