@@ -23,7 +23,7 @@ description: "FPT パイプラインを新しい Mac で使えるようにする
 2. 空き容量を確かめます（`df -h ~`）。Miniforge と環境 dip で約 1.2 GB、32a の確認（check_32a）の出力で約 2.6 GB、
    再構成の出力は 1 データあたり数 GB です（2026-10-07、M4 の Mac での実測）。
 3. リポジトリが Google Drive の中（`~/Library/CloudStorage/...`）に無いことを確かめます。同期で `.git/` が壊れることがあるので、中にあれば
-   ホームフォルダの下（例 `~/fpt-pipeline`）に clone し直すよう勧めます。
+   ホームフォルダの下（例 `~/fpt-rec`）に clone し直すよう勧めます。
 4. `git config --global core.quotepath false`（日本語のファイル名をそのまま表示する）。
 
 ## 2. conda（Miniforge）

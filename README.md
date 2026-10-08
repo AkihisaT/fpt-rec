@@ -18,9 +18,9 @@ Claude Code が入っていれば、リポジトリを取ってきて（下の 2
 下の 1.〜5. の準備を進めます（インストールと `~/.zshrc` の変更の前には許可を求めます）。
 
 ```
-git clone https://github.com/<アカウント>/fpt-pipeline.git ~/fpt-pipeline
-cd ~/fpt-pipeline
-claude                    # デスクトップアプリなら、~/fpt-pipeline のフォルダを開く
+git clone https://github.com/AkihisaT/fpt-rec.git ~/fpt-rec
+cd ~/fpt-rec
+claude                    # デスクトップアプリなら、~/fpt-rec のフォルダを開く
 ```
 
 以下は、同じ準備を手で行う手順です。
@@ -39,25 +39,17 @@ Homebrew が Intel 版（`/usr/local` にあり、Rosetta で動く）だと、`
 
 ### 2. リポジトリを取ってくる
 
-GitHub から（URL は作成者に聞いてください）：
-
 ```
-git clone https://github.com/<アカウント>/fpt-pipeline.git ~/fpt-pipeline
+git clone https://github.com/AkihisaT/fpt-rec.git ~/fpt-rec
 ```
 
-GitHub を使わずに、ファイル `fpt-pipeline.bundle` をもらった場合：
-
-```
-git clone ~/Downloads/fpt-pipeline.bundle ~/fpt-pipeline
-```
-
-リポジトリは Google Drive の中に置かないでください。同期で Git の管理ファイル（`.git/`）が壊れることがあります。
-ホームフォルダの下（例 `~/fpt-pipeline`）に置きます。
+リポジトリは Google Drive などのクラウド同期フォルダの中に置かないでください。同期で Git の管理ファイル（`.git/`）が壊れることがあります。
+ホームフォルダの下（例 `~/fpt-rec`）に置きます。
 
 ### 3. Python の環境を作る
 
 ```
-cd ~/fpt-pipeline
+cd ~/fpt-rec
 conda env create -f dip_pipeline/environment_dip.yml     # 環境 dip（Python 3.12、numpy、scipy、tifffile、matplotlib、torch）
 conda activate dip
 pip install python-pptx                                  # スライドを作る場合のみ
@@ -71,7 +63,7 @@ open -e paths_local.sh                        # 自分の端末のパスに書�
 source paths_local.sh
 ```
 
-共有された Google Drive のフォルダは、Finder では「共有アイテム」に表示されます。マイドライブにショートカットを作るか、
+生データが Google Drive の共有フォルダにある場合、Finder では「共有アイテム」に表示されます。マイドライブにショートカットを作るか、
 Finder でフォルダを右クリックして、option キーを押しながら「パス名をコピー」でパスを取ります。
 
 ### 5. 動くか確かめる
@@ -88,10 +80,10 @@ tail -5 tests/check_32a.log                              # 「判定: 一致」�
 
 ## Claude Code で使う
 
-ターミナルからは次のように起動します。デスクトップアプリ（Code タブ）からは、`~/fpt-pipeline` のフォルダを開きます。
+ターミナルからは次のように起動します。デスクトップアプリ（Code タブ）からは、`~/fpt-rec` のフォルダを開きます。
 
 ```
-cd ~/fpt-pipeline
+cd ~/fpt-rec
 claude
 ```
 
@@ -101,7 +93,7 @@ claude
   - `[FPT] 準備が終わっていません` と出たら、`/fpt-setup` を使います。
   - `paths_local.sh` を書き換えたら、新しいセッションで反映されます。
 - デスクトップアプリは、git worktree（`.claude/worktrees/` の下の別の作業コピー）でセッションを開くことがあります。
-  その場合、出力と前の計算結果はこのフォルダと共有されません（開始時に注意が出ます）。解析は `~/fpt-pipeline` そのもので開いたセッションで行います。
+  その場合、出力と前の計算結果はこのフォルダと共有されません（開始時に注意が出ます）。解析は `~/fpt-rec` そのもので開いたセッションで行います。
 - Claude Code は、開いたフォルダの `CLAUDE.md`（このリポジトリの決まり）を読み込みます。初めて開くときは、フォルダを信頼するかを聞かれます。
 - 新しいデータを再構成するときの手順は、スキル `fpt-recon-workflow`（`.claude/skills/fpt-recon-workflow/`）に書いてあります。
   「`/fpt-recon-workflow` で `<生データのフォルダ>` を再構成して」のように、スキルの名前を付けて頼みます。
@@ -123,24 +115,7 @@ git push                     # GitHub に送る
 Claude Code に「変更をコミットして」「GitHub に push して」と頼むこともできます。
 生データ、再構成の出力、画像、`paths_local.sh` は `.gitignore` で除外してあるので、コミットされません。
 コードを変えたときは `python tests/selftest.py` を実行してからコミットします。
-
-## GitHub に置く（作成者が最初に 1 回）
-
-1. GitHub のアカウントを作ります（https://github.com）。同僚の方もアカウントが必要です。
-2. GitHub CLI を入れて、ログインします：`brew install gh`（Homebrew がない場合は https://cli.github.com から入れる）、`gh auth login`。
-3. バンドルから取ってきたリポジトリで、次を実行します。非公開（private）のリポジトリができ、内容が送られます。
-
-   ```
-   cd ~/fpt-pipeline
-   git remote remove origin                 # バンドルを指している origin を外す
-   gh repo create fpt-pipeline --private --source . --push
-   ```
-
-4. GitHub のリポジトリのページで Settings → Collaborators → Add people から、同僚の方を招待します。
-5. 同僚の方は、招待を承認してから `git clone` します（上の「2. リポジトリを取ってくる」）。
-
-GitHub を使わない場合は、`fpt-pipeline.bundle` を Drive などで渡します。新しい版は、作成者が
-`git bundle create fpt-pipeline.bundle --all` で作り直して渡し、受け取った側は `git pull <バンドルのパス> main` で取り込みます。
+このリポジトリへの書き込み権限が無い場合は、GitHub で fork し、pull request で変更を提案してください。
 
 ## 中身
 
@@ -163,4 +138,5 @@ GitHub を使わない場合は、`fpt-pipeline.bundle` を Drive などで渡�
 - 動作を確かめたのは macOS（8 コアの CPU）だけです。今のコードは CPU で動かす前提です（GPU を使う指定はありません）。
   Windows や GPU で使うように変えるときは、ブランチを作って変え、既定の動作（CPU）を残してください。
 - p（試料–対物距離 0.75 m）と CZP の焦点距離（2.4 m）は実測値ではありません。
-- 生データとこれまでの成果物は、このリポジトリに入っていません。使ってよいか、データの持ち主に確認してください。
+- 解析に使った生データとこれまでの成果物は公開していないため、このリポジトリには入っていません。
+  自分のデータで使うときは、`paths_local.sh` にそのフォルダを書き、`/fpt-recon-workflow` の手順で条件を決めます。
